@@ -4,7 +4,7 @@ import Authentication
 
 /// Called before your application initializes.
 public func configure(_ config: inout Config, _ env: inout Environment, _ services: inout Services) throws {
-    let serverConfiure = NIOServerConfig.default(hostname: "localhost", port: 9090)
+    let serverConfiure = NIOServerConfig.default(hostname: "localhost", port: 9091  )
     services.register(serverConfiure)
     // Register providers first
     try services.register(FluentSQLiteProvider())
@@ -36,5 +36,6 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     var migrations = MigrationConfig()
     migrations.add(model: User.self, database: .sqlite)
     migrations.add(model: Item.self, database: .sqlite)
+    migrations.add(model: Character.self, database: .sqlite)
     services.register(migrations)
 }

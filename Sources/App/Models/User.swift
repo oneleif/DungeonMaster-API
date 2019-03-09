@@ -10,15 +10,15 @@ import Vapor
 import Authentication
 
 
-final class User: SQLiteModel {
+final class User: SQLiteModel, Buildable {
     var id: Int?
     var email: String
     var password: String
     
-    init(id: Int? = nil, email: String, password: String) {
-        self.id = id
-        self.email = email
-        self.password = password
+    init() {
+        id = nil
+        email = "n/a"
+        password = "n/a"
     }
 }
 

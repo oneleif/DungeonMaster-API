@@ -8,15 +8,23 @@ import FluentSQLite
 import Vapor
 import Authentication
 
-struct Currency: Codable {
+struct Currency: CodeAndBuildable {
     var pp: Int
     var gp: Int
     var ep: Int
     var sp: Int
     var cp: Int
+    
+    init() {
+        pp = 0
+        gp = 0
+        ep = 0
+        sp = 0
+        cp = 0
+    }
 }
 
-final class Item: SQLiteModel {
+final class Item: SQLiteModel, Buildable {
     var id: Int?
     var name: String
     var description: String
@@ -26,16 +34,15 @@ final class Item: SQLiteModel {
     var value: Currency
     var rarity: Int
     
-    init(id: Int? = nil, name: String, description: String, visualDescription: String,
-         image: String, stackAmount: Int, value: Currency, rarity: Int) {
-        self.id = id
-        self.name = name
-        self.description = description
-        self.visualDescription = visualDescription
-        self.image = image
-        self.stackAmount = stackAmount
-        self.value = value
-        self.rarity = rarity
+    init() {
+        id = nil
+        name = "n/a"
+        description = "n/a"
+        visualDescription = "n/a"
+        image = "n/a"
+        stackAmount = 0
+        value = Currency()
+        rarity = 0
     }
 }
 
